@@ -1,0 +1,16 @@
+# set namespace
+export KUBE_NAMESPACE="${KUBE_NAMESPACE:-default}"
+
+export KUBE_DIR="kubernetes"
+export KUBE_SCRIPTS_DIR="${KUBE_DIR}/scripts"
+export KUBE_JSONNET_DIR="${KUBE_DIR}/jsonnet"
+export KUBE_GENERATED_DIR="${KUBE_DIR}/generated"
+mkdir -p "${KUBE_GENERATED_DIR}"
+
+# create namespace
+kubectl create ns "${KUBE_NAMESPACE}"
+
+# get jsonnet
+jsonnet -y --ext-str namespace=${KUBE_NAMESPACE} ${KUBE_JSONNET_DIR}/mysql.jsonnet > "${KUBE_GENERATED_DIR}/mysql.json"
+jsonnet -y --ext-str namespace=${KUBE_NAMESPACE} ${KUBE_JSONNET_DIR}/basic_rails_app.jsonnet > "${KUBE_GENERATED_DIR}/basic_rails_app.json"
+jsonnet -y --ext-str namespace=${KUBE_NAMESPACE} ${KUBE_JSONNET_DIR}/ingress.jsonnet > "${KUBE_GENERATED_DIR}/ingress.json"

@@ -1,0 +1,11 @@
+export KUBE_DIR="kubernetes"
+export KUBE_SCRIPTS_DIR="${KUBE_DIR}/scripts"
+
+# generate manifests
+source "${KUBE_SCRIPTS_DIR}/generate"
+
+# remove existing k8s objects
+kubectl delete -f ${KUBE_GENERATED_DIR}
+
+# create k8s objects
+kubectl apply -f ${KUBE_GENERATED_DIR}
