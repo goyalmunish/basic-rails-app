@@ -11,6 +11,5 @@ mkdir -p "${KUBE_GENERATED_DIR}"
 kubectl create ns "${KUBE_NAMESPACE}"
 
 # get jsonnet
-jsonnet -y --ext-str namespace=${KUBE_NAMESPACE} ${KUBE_JSONNET_DIR}/mysql.jsonnet > "${KUBE_GENERATED_DIR}/mysql.json"
 jsonnet -y --ext-str namespace=${KUBE_NAMESPACE} ${KUBE_JSONNET_DIR}/basic_rails_app.jsonnet > "${KUBE_GENERATED_DIR}/basic_rails_app.json"
 jsonnet -y --ext-str namespace=${KUBE_NAMESPACE} ${KUBE_JSONNET_DIR}/ingress.jsonnet > "${KUBE_GENERATED_DIR}/ingress.json"

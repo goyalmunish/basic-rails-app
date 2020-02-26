@@ -14,6 +14,7 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.new permitted_parameters
+    @room.test_byebug
 
     if @room.save
       flash[:success] = "Room #{@room.name} was created successfully"

@@ -31,7 +31,7 @@ Then, you can check manifests generated in `kubernetes/generated` directory.
 If everythin looks file, you can apply them as:
 
 ```sh
-kubernetes apply -f kubernetes/generated
+kubectl apply -f kubernetes/generated
 ```
 
 or using script as:

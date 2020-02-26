@@ -28,7 +28,6 @@ local subdomain_based_ingress_rule = function(root_domain, service_name, service
 
 local services = [
   { service_name: 'basic-rails-app', service_port: 8080 },
-  { service_name: 'stocks-webserver', service_port: 8080 },
 ];
 
 local devenv_ingress = function(namespace, services) {

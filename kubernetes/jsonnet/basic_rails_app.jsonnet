@@ -13,7 +13,7 @@ local basic_rails_service = function(namespace) (
     },
   ];
 
-  utils.basic_service(obj_name, ports, namespace=namespace)
+  utils.basic_service(obj_name, ports, service_type='NodePort', namespace=namespace)
 );
 
 
