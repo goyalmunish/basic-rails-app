@@ -16,6 +16,19 @@ local basic_rails_service = function(namespace) (
   utils.basic_service(obj_name, ports, service_type='NodePort', namespace=namespace)
 );
 
+local debug_rails_server = function(namespace) (
+  local ports = [
+    {
+      name: 'web',
+      port: 8080,
+      targetPort: 5000,
+      protocol: 'TCP',
+    },
+  ];
+
+  utils.basic_service(obj_name, ports, service_name='debug-rails-server', service_type='NodePort', namespace=namespace)
+);
+
 
 local basic_rails_deployment = function(namespace) (
   local containers = [
@@ -36,4 +49,4 @@ local basic_rails_deployment = function(namespace) (
 );
 
 
-[basic_rails_service(namespace=namespace), basic_rails_deployment(namespace=namespace)]
+[debug_rails_server(namespace=namespace), basic_rails_service(namespace=namespace), basic_rails_deployment(namespace=namespace)]

@@ -53,12 +53,16 @@ local basic_deployment = function(obj_name, containers, init_containers=[], volu
   },
 };
 
-
-local basic_service = function(obj_name, ports=[], service_type='ClusterIP', namespace='default') {
+local basic_service = function(obj_name, ports=[], service_name='', service_type='ClusterIP', namespace='default') {
   apiVersion: 'v1',
   kind: 'Service',
   metadata: {
-    name: obj_name,
+    name: (
+      if service_name != '' then
+        service_name
+      else
+        obj_name
+    ),
     namespace: namespace,
     labels: {
       app: obj_name,
